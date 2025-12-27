@@ -1,9 +1,8 @@
 local component = require("component")
 local event = require("event")
 local tunnel = component.tunnel
-tunnel.open(1)
 
-print("PROVIDER")
+print("PROVIDER ONLINE (Tunnel only)")
 
 local routes = {}
 
