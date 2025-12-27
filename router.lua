@@ -1,12 +1,10 @@
 local component = require("component")
 local event = require("event")
-local wifi   = component.modem  -- беспроводной для клиентов
-local tunnel = component.tunnel -- связь с провайдером
+local wifi   = component.modem
+local tunnel = component.tunnel
 
 wifi.open(9000)
-tunnel.open(1)
 
--- IP роутера (5 чисел)
 local function getIP()
   local raw = tunnel.address:gsub("%D","")
   local t={}
@@ -18,7 +16,6 @@ local IP = getIP()
 local PREFIX = IP:match("^(.+%.)")
 print("Router online:", IP)
 
--- регистрация у провайдера
 tunnel.send("PROVIDER", {type="register_router", ip=IP})
 
 local routes = {[PREFIX]="local"}
